@@ -1,7 +1,7 @@
 const leboncoin = require('leboncoin-api');
 
 var sqlite3 = require('sqlite3').verbose();
-var db = new sqlite3.Database('annonces.sqlite');
+var db = new sqlite3.Database('../assets/db/annonces.sqlite');
 
 db.serialize(function() {
   db.run(`CREATE TABLE IF NOT EXISTS annonces
