@@ -32,9 +32,9 @@ for (var i = 100 - 1; i >= 0; i--) {
 
   search.run().then(function (data) {
     for (var i = data.results.length - 1; i >= 0; i--) {
-      var stmt = db.prepare("INSERT OR IGNORE INTO annonces VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
+      var stmt = db.prepare("INSERT OR IGNORE INTO annonces VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
       data.results[i].getDetails().then(function (item) {
-        stmt.run(item.id, item.title, item.price, item.price/item.surface, item.location, item.zip, item.city, item.category, item.rooms, item.surface, item.ges, item["classe énergie"], item.description);
+        stmt.run(item.id, item.title, item.price, item.price/item.surface, item.location, item.zip, item.city, item.category, item.rooms, item.surface, item.ges, item["classe énergie"], item.description), null, null;
       }, function (err) {
           console.error(err);
       });

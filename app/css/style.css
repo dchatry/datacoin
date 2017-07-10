@@ -1,0 +1,128 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+html, body, #map {
+    height: 100%;
+    width: 100%;
+    font-family: 'Noto Sans', sans-serif;
+}
+
+.sources-map__overlay {
+    z-index: 1000;
+    position: absolute;
+    width: 100%;
+    max-width: 400px;
+    background: #FFF;
+    will-change: transform,opacity;
+    -webkit-transform-origin: 0 0;
+    -ms-transform-origin: 0 0;
+    transform-origin: 0 0;
+    -webkit-transition: all .2s;
+    transition: all .2s;
+}
+
+.sources-map__overlay article {
+    position: relative;
+    overflow: hidden;
+}
+
+.sources-map__overlay header {
+    padding: 20px 25px;
+    background: #24CB93;
+    color: #FFF;
+}
+
+.sources-map__overlay header h1 {
+    margin-bottom: .3em;
+    font-family: "Proxima Nova",sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    font-size: 2rem;
+    line-height: 1.15;
+    text-transform: none;
+}
+
+.sources-map__instructions svg path {
+  fill: #FFFFFF;
+}
+
+.sources-map__instructions {
+    z-index: 10000;
+    position: absolute;
+    right: 30px;
+    top: 30px;
+    width: 250px;
+    padding: 20px 25px;
+    background: #24CB93;
+    color: #fff;
+    font-size: 12px;
+    font-size: 0.8rem;
+    line-height: 1.3;
+    will-change: transform,opacity;
+    -webkit-transform-origin: 100% 0;
+    -ms-transform-origin: 100% 0;
+    transform-origin: 100% 0;
+    -webkit-transition: all .2s;
+    transition: all .2s;
+}
+
+
+.sources-map__instructions dl {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    zoom: 1;
+    position: relative;
+    line-height: 1.2;
+}
+
+.sources-map__instructions dl::before {
+    content: '';
+    position: absolute;
+    left: 10%;
+    top: 4px;
+    bottom: 4px;
+    margin-left: 15px;
+    display: block;
+    width: 1px;
+    background: rgba(50,50,50,1);
+}
+
+.sources-map__instructions dt {
+    margin: 0;
+    float: left;
+    clear: left;
+    width: 10%;
+    padding: 6px 0;
+    text-align: center;
+}
+
+.sources-map__instructions dd {
+    margin: 0;
+    float: left;
+    width: 90%;
+    padding: 6px 0 6px 32px;
+}
+
+.sources-map__legend {
+      right: 30px;
+    bottom: 30px;
+    width: 300px;
+    z-index: 1000;
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+    padding: 25px;
+    background: #fff;
+    color: #333;
+    font-size: 12px;
+    font-size: 0.8rem;
+    line-height: 1.3;
+    will-change: transform,opacity;
+    -webkit-transform-origin: 100% 100%;
+    -ms-transform-origin: 100% 100%;
+    transform-origin: 100% 100%;
+    -webkit-transition: all .2s;
+    transition: all .2s;
+}

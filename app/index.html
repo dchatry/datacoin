@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.1.0/dist/leaflet.css"
+   integrity="sha512-wcw6ts8Anuw10Mzh9Ytw4pylW8+NAD4ch3lqm9lzAsTxg0GFeJgoAtxuCLREZSC5lUXdVyo/7yfsqFjQ4S+aKw=="
+   crossorigin=""/>
+  <link rel="stylesheet" href="css/bulma.css"/>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,400i,700" rel="stylesheet">
+</head>
+<body>
+  <aside class="sources-map__instructions js-corner-overlay" id="map-instructions" aria-hidden="false">
+    <dl>
+      <dt>
+        <svg width="16" height="22" viewBox="0 0 16 22" xmlns="http://www.w3.org/2000/svg">
+          <path d="M5.996 4.533l-4.753 3.4c-1.312.94-1.638 2.797-.726 4.15l4.946 7.352C6.587 21.105 8.388 22 10.22 22c3.147 0 5.78-2.627 5.78-5.97 0-1.175-.335-2.36-1.032-3.397l-4.947-7.35c-.91-1.353-2.712-1.69-4.024-.75zM2.068 9.158l2.465-1.813 2.06 3.063-3.65 2.664-1.238-1.838c-.456-.675-.292-1.607.363-2.076zm10.622 10.55c-1.966 1.408-4.675.903-6.04-1.123l-2.883-4.29 7.127-5.1 2.886 4.288c1.363 2.027.873 4.82-1.09 6.226zM7.273 2.494L7.275 0h.96L8.23 2.51c-.192-.027-.387-.043-.584-.043l-.373.028zm1.88.25L10.556.68l.785.568-1.32 1.943c-.273-.18-.562-.332-.867-.447zm-3.726.362L4.164 1.24 4.95.676l1.36 2.007c-.307.103-.6.25-.883.423z" fill-rule="nonzero"></path>
+        </svg>
+      </dt>
+      <dd>Clic droit/faire glisser deux doigts pour changer l'orientation</dd>
+      <dt>
+        <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 8.333c.92 0 1.667.747 1.667 1.667S10.92 11.667 10 11.667 8.333 10.92 8.333 10 9.08 8.333 10 8.333zm-3.214 2.5c-.07-.267-.12-.543-.12-.833 0-.29.05-.566.12-.833H5V5.833L0 10l5 4.167v-3.334h1.786zm6.428-1.666c.07.267.12.543.12.833 0 .29-.05.566-.12.833H15v3.334L20 10l-5-4.167v3.334h-1.786zm-2.38 4.047c-.268.07-.544.12-.834.12-.29 0-.566-.05-.833-.12V15H5.833L10 20l4.167-5h-3.334v-1.786zM9.166 6.786c.267-.07.543-.12.833-.12.29 0 .566.05.833.12V5h3.334L10 0 5.833 5h3.334v1.786z" fill-rule="nonzero"></path>
+        </svg>
+      </dt>
+      <dd>Clic/toucher et glisser pour déplacer la carte</dd>
+      <dt>
+        <svg width="19" height="19" viewBox="0 0 19 19" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16.76 19l-5.847-5.848c-1.1.692-2.394 1.098-3.788 1.098C3.19 14.25 0 11.06 0 7.125S3.19 0 7.125 0s7.125 3.19 7.125 7.125c0 1.394-.407 2.69-1.098 3.788L19 16.76 16.76 19zm-9.635-6.333c3.055 0 5.542-2.486 5.542-5.542 0-3.056-2.487-5.542-5.542-5.542-3.055 0-5.542 2.486-5.542 5.542 0 3.056 2.487 5.542 5.542 5.542z" fill-rule="nonzero"></path>
+        </svg>
+      </dt>
+      <dd>Molette de défilement/taper deux fois pour zoomer</dd>
+    </dl>
+  </aside>
+  <aside class="sources-map__legend js-corner-overlay" id="map-legend" aria-hidden="false">
+    <section class="sources-map__legend-logo"></section>
+    <dl>
+      <dt>
+        <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="1036" cy="792" r="7" transform="translate(-1028 -784)" stroke="#FFF05A" fill="#FFF05A" fill-rule="evenodd"></circle>
+        </svg>
+      </dt>
+      <dd>Annonces</dd>
+    </dl>
+  </aside>
+  <div id="map"></div>
+  <script src="https://unpkg.com/leaflet@1.1.0/dist/leaflet.js"
+   integrity="sha512-mNqn2Wg7tSToJhvHcqfzLMU6J4mkOImSPTxVZAdo+lcPlk+GhZmYgACEe0x35K7YzW1zJ7XyJV/TT1MrdXvMcA=="
+   crossorigin=""></script>
+  <script type="text/javascript">
+    var map = L.map('map', { zoomControl:false }).setView([51.505, 13], 5);
+    L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?').addTo(map);
+
+    var sqlite3 = require('sqlite3').verbose();
+    var db = new sqlite3.Database('../assets/db/annonces.sqlite');
+
+    db.each("SELECT * FROM annonces WHERE latitude IS NOT NULL AND longitude IS NOT NULL", function(err, row) {
+      var marker = L.marker([row.latitude, row.longitude]).addTo(map);
+    });
+
+
+
+
+
+
+
+
+  </script>
+</body>
+</html>
